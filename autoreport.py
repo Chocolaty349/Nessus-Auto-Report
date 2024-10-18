@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET 
 import openpyxl
+import sys
 
 class Requirement:
     def __init__(self, requimentName, reqiurementResult, proff):
@@ -14,10 +15,10 @@ class Requirement:
         return f'{self.requimentName}\nResult: {self.requirementResult}\nProff: {self.proff}' 
         
 # load report file
-report_init = openpyxl.load_workbook('Ubuntu_Blank.xlsx')
+report_init = openpyxl.load_workbook(sys.argv[1])
 report_excelfile = report_init.active
 # load .nessuss file
-reportTree = ET.parse('CentOS7 Compliance scan_udpps4.nessus')
+reportTree = ET.parse(sys.argv[0])
 root = reportTree.getroot()
 reportElem =root.find('Report')
 
